@@ -14,6 +14,9 @@ using System.Xml.Linq;
 using System.IO;
 using System.Xml;
 using System.Windows.Resources;
+using System.Diagnostics;
+using System.Windows.Threading;
+
 
 namespace DineSafer
 {
@@ -43,10 +46,13 @@ namespace DineSafer
             listBox.ItemsSource = data;
 
         }
+        IEnumerable<DineSafe> filteredData;
+        DispatcherTimer t;
 
-        private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void performSearch(object sender, EventArgs e)
         {
-                var filteredData = from query in loadedData.Descendants("ROW")
+            t.Stop();
+            IEnumerable<DineSafe> filteredData = from query in loadedData.Descendants("ROW")
                                    where (Convert.ToString(query.Attribute("ESTABLISHMENT_NAME").Value).ToLower().Contains(Convert.ToString(searchBox.Text).ToLower()))
                                    select new DineSafe()
                                    {
@@ -63,6 +69,23 @@ namespace DineSafer
                     listBox.ItemsSource = filteredData;
                 else
                 listBox.ItemsSource = "";
-             }
+        }
+
+
+        private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                t.Stop();
+            }
+            catch (Exception q)
+            {
+                //T doesn't exist yet.
+            }
+            t = new DispatcherTimer();
+            t.Interval = new TimeSpan( 0, 0, 2 );
+            t.Tick += new EventHandler(performSearch );
+            t.Start();
+        }   
     }
 }
