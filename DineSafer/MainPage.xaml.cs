@@ -32,13 +32,13 @@ namespace DineSafer
             var data = from query in loadedData.Descendants("ROW")
                        select new DineSafe
                        {
-                           Name = (string)query.Element("ESTABLISHMENT_NAME"),
-                           FoodType = (string)query.Element("ESTABLISHMENTTYPE"),
-                           Address = (string)query.Element("ESTABLISHMENT_ADDRESS"),
-                           Status = (string)query.Element("ESTABLISHMENT_STATUS"),
-                           Details = (string)query.Element("INFRACTION_DETAILS"),
-                           Date = (string)query.Element("INFRACTION_DATE"),
-                           Severity = (string)query.Element("SEVERITY")
+                           Name = (string)query.Attribute("ESTABLISHMENT_NAME"),
+                           FoodType = (string)query.Attribute("ESTABLISHMENTTYPE"),
+                           Address = (string)query.Attribute("ESTABLISHMENT_ADDRESS"),
+                           Status = (string)query.Attribute("ESTABLISHMENT_STATUS"),
+                           Details = (string)query.Attribute("INFRACTION_DETAILS"),
+                           Date = (string)query.Attribute("INFRACTION_DATE"),
+                           Severity = (string)query.Attribute("SEVERITY")
                        };
             listBox.ItemsSource = data;
 
@@ -46,18 +46,17 @@ namespace DineSafer
 
         private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-                Console.WriteLine(searchBox.Text);
                 var filteredData = from query in loadedData.Descendants("ROW")
-                                   where (Convert.ToString(query.Element("ESTABLISHMENT_NAME").Value).ToLower().Contains(Convert.ToString(searchBox.Text).ToLower()))
+                                   where (Convert.ToString(query.Attribute("ESTABLISHMENT_NAME").Value).ToLower().Contains(Convert.ToString(searchBox.Text).ToLower()))
                                    select new DineSafe()
                                    {
-                                       Name = (string)query.Element("ESTABLISHMENT_NAME"),
-                                       FoodType = (string)query.Element("ESTABLISHMENTTYPE"),
-                                       Address = (string)query.Element("ESTABLISHMENT_ADDRESS"),
-                                       Status = (string)query.Element("ESTABLISHMENT_STATUS"),
-                                       Details = (string)query.Element("INFRACTION_DETAILS"),
-                                       Date = (string)query.Element("INFRACTION_DATE"),
-                                       Severity = (string)query.Element("SEVERITY")
+                                       Name = (string)query.Attribute("ESTABLISHMENT_NAME"),
+                                       FoodType = (string)query.Attribute("ESTABLISHMENTTYPE"),
+                                       Address = (string)query.Attribute("ESTABLISHMENT_ADDRESS"),
+                                       Status = (string)query.Attribute("ESTABLISHMENT_STATUS"),
+                                       Details = (string)query.Attribute("INFRACTION_DETAILS"),
+                                       Date = (string)query.Attribute("INFRACTION_DATE"),
+                                       Severity = (string)query.Attribute("SEVERITY")
 
                                    };
                 if (filteredData.Count() >= 1)
