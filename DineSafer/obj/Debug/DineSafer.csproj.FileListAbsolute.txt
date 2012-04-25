@@ -1,0 +1,14 @@
+c:\users\tyler\documents\visual studio 2010\Projects\DineSafer\DineSafer\Bin\Debug\ApplicationIcon.png
+c:\users\tyler\documents\visual studio 2010\Projects\DineSafer\DineSafer\Bin\Debug\Background.png
+c:\users\tyler\documents\visual studio 2010\Projects\DineSafer\DineSafer\Bin\Debug\DineSafer.dll
+c:\users\tyler\documents\visual studio 2010\Projects\DineSafer\DineSafer\Bin\Debug\DineSafer.pdb
+c:\users\tyler\documents\visual studio 2010\Projects\DineSafer\DineSafer\Bin\Debug\AppManifest.xaml
+c:\users\tyler\documents\visual studio 2010\Projects\DineSafer\DineSafer\Bin\Debug\DineSafer.xap
+c:\users\tyler\documents\visual studio 2010\Projects\DineSafer\DineSafer\obj\Debug\ResolveAssemblyReference.cache
+c:\users\tyler\documents\visual studio 2010\Projects\DineSafer\DineSafer\obj\Debug\App.g.i.cs
+c:\users\tyler\documents\visual studio 2010\Projects\DineSafer\DineSafer\obj\Debug\MainPage.g.i.cs
+c:\users\tyler\documents\visual studio 2010\Projects\DineSafer\DineSafer\obj\Debug\DineSafer.g.resources
+c:\users\tyler\documents\visual studio 2010\Projects\DineSafer\DineSafer\obj\Debug\DineSafer.dll
+c:\users\tyler\documents\visual studio 2010\Projects\DineSafer\DineSafer\obj\Debug\DineSafer.pdb
+c:\users\tyler\documents\visual studio 2010\Projects\DineSafer\DineSafer\obj\Debug\XapCacheFile.xml
+c:\users\tyler\documents\visual studio 2010\Projects\DineSafer\DineSafer\Bin\Debug\dinesafe.xml
