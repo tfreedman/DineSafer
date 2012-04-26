@@ -1,40 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using System.Xml.Linq;
-using System.IO;
-using System.Xml;
 using System.Windows.Resources;
 using System.Diagnostics;
-using System.Windows.Threading;
 
-
-namespace DineSafer
-{
-    public partial class MainPage : PhoneApplicationPage
-    {
+namespace DineSafer {
+    public partial class MainPage : PhoneApplicationPage {
         XDocument loadedData;
         StreamResourceInfo xml;
 
-        // Constructor
-        public MainPage()
-        {
+        public MainPage() {
             InitializeComponent();
+            Debug.WriteLine(DateTime.Now);
             xml = Application.GetResourceStream(new Uri("dinesafe.xml", UriKind.Relative));
             loadedData = XDocument.Load(xml.Stream);
 
             var data = from query in loadedData.Descendants("ROW")
-                       select new DineSafe
-                       {
+                       select new DineSafe {
                            Name = (string)query.Attribute("ESTABLISHMENT_NAME"),
                            FoodType = (string)query.Attribute("ESTABLISHMENTTYPE"),
                            Address = (string)query.Attribute("ESTABLISHMENT_ADDRESS"),
@@ -43,49 +28,35 @@ namespace DineSafer
                            Date = (string)query.Attribute("INFRACTION_DATE"),
                            Severity = (string)query.Attribute("SEVERITY")
                        };
-            listBox.ItemsSource = data;
+            uniques = data.Distinct(new DineSafeComparer());
+            original = data.ToArray<DineSafe>();
+            array = uniques.ToArray<DineSafe>();
+            Debug.WriteLine(DateTime.Now);
 
         }
-        IEnumerable<DineSafe> filteredData;
-        DispatcherTimer t;
+        DineSafe[] original;
+        DineSafe[] array;
+        IEnumerable<DineSafe> uniques;
+        List<DineSafe> filteredData;
+        private void performSearch(object sender, EventArgs e) {
+            filteredData = new List<DineSafe> { };
+            for (int i = 0; i < array.GetLength(0); i++) {
+                if (Convert.ToString(array[i].Name).ToLower().Contains(Convert.ToString(toSearch).ToLower()))
+                    filteredData.Add(array[i]);
+            }
+            listBox.ItemsSource = filteredData;
 
-        private void performSearch(object sender, EventArgs e)
-        {
-            t.Stop();
-            IEnumerable<DineSafe> filteredData = from query in loadedData.Descendants("ROW")
-                                   where (Convert.ToString(query.Attribute("ESTABLISHMENT_NAME").Value).ToLower().Contains(Convert.ToString(searchBox.Text).ToLower()))
-                                   select new DineSafe()
-                                   {
-                                       Name = (string)query.Attribute("ESTABLISHMENT_NAME"),
-                                       FoodType = (string)query.Attribute("ESTABLISHMENTTYPE"),
-                                       Address = (string)query.Attribute("ESTABLISHMENT_ADDRESS"),
-                                       Status = (string)query.Attribute("ESTABLISHMENT_STATUS"),
-                                       Details = (string)query.Attribute("INFRACTION_DETAILS"),
-                                       Date = (string)query.Attribute("INFRACTION_DATE"),
-                                       Severity = (string)query.Attribute("SEVERITY")
+         }
 
-                                   };
-                if (filteredData.Count() >= 1)
-                    listBox.ItemsSource = filteredData;
-                else
-                listBox.ItemsSource = "";
+        private void search() {
+            object sender = null;
+            EventArgs e = new EventArgs();
+            performSearch(sender, e);
         }
-
-
-        private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                t.Stop();
-            }
-            catch (Exception q)
-            {
-                //T doesn't exist yet.
-            }
-            t = new DispatcherTimer();
-            t.Interval = new TimeSpan( 0, 0, 2 );
-            t.Tick += new EventHandler(performSearch );
-            t.Start();
-        }   
+        string toSearch = "";
+        private void searchBox_TextChanged(object sender, RoutedEventArgs e) {
+            toSearch = searchBox.Text;
+            search();
+        }
     }
 }

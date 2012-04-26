@@ -8,9 +8,24 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using System.Collections.Generic;
 
 namespace DineSafer
 {
+    class DineSafeComparer : IEqualityComparer<DineSafe>
+    {
+        public bool Equals(DineSafe x, DineSafe y)
+        {
+            if (x.Name.Equals(y.Name) && x.Address.Equals(y.Address))
+                return true;
+            return false;
+        }
+
+        public int GetHashCode(DineSafe dineSafe)
+        {
+            return 10;
+        }
+    }
     public class DineSafe
     {
         string ESTABLISHMENT_NAME;
