@@ -12,3 +12,4 @@ c:\users\tyler\documents\visual studio 2010\Projects\DineSafer\DineSafer\obj\Deb
 c:\users\tyler\documents\visual studio 2010\Projects\DineSafer\DineSafer\obj\Debug\DineSafer.pdb
 c:\users\tyler\documents\visual studio 2010\Projects\DineSafer\DineSafer\obj\Debug\XapCacheFile.xml
 c:\users\tyler\documents\visual studio 2010\Projects\DineSafer\DineSafer\Bin\Debug\dinesafe.xml
+C:\Users\Tyler\Documents\Visual Studio 2010\Projects\DineSafer\DineSafer\obj\Debug\RestaurantInfo.g.i.cs

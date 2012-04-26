@@ -6,6 +6,8 @@ using Microsoft.Phone.Controls;
 using System.Xml.Linq;
 using System.Windows.Resources;
 using System.Diagnostics;
+using System.Windows.Input;
+using System.Windows.Controls;
 
 namespace DineSafer {
     public partial class MainPage : PhoneApplicationPage {
@@ -34,7 +36,7 @@ namespace DineSafer {
             Debug.WriteLine(DateTime.Now);
 
         }
-        DineSafe[] original;
+        public DineSafe[] original;
         DineSafe[] array;
         IEnumerable<DineSafe> uniques;
         List<DineSafe> filteredData;
@@ -57,6 +59,11 @@ namespace DineSafer {
         private void searchBox_TextChanged(object sender, RoutedEventArgs e) {
             toSearch = searchBox.Text;
             search();
+        }
+
+        private void TextBlock_Tap(object sender, GestureEventArgs e) {
+            TextBlock se = (TextBlock)sender;
+            NavigationService.Navigate(new Uri("/RestaurantInfo.xaml?name=" + se.Text, UriKind.Relative));
         }
     }
 }

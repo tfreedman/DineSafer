@@ -1,16 +1,16 @@
 ﻿<phone:PhoneApplicationPage 
-    x:Class="DineSafer.MainPage"
+    x:Class="DineSafer.RestaurantInfo"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -23,24 +23,26 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="DINESAFER" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="home" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="PageTitle" Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,119,0,0" Orientation="Horizontal">
-            <TextBlock Text="Restaurants:" Height="532" Width="133" />
+        <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,0,0,0" Orientation="Horizontal">
+            <TextBlock Text="Events:" Height="532" Width="133" />
             <ListBox x:Name="listBox">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="10">
-                            <TextBlock Text="{Binding Name}" Tag="{Binding Name}" Tap="TextBlock_Tap"/>
-                            <TextBlock Text="{Binding Address}" Tag="{Binding Address}" Tap="TextBlock_Tap"/>
+                            <TextBlock Text="{Binding FoodType}" Tap="TextBlock_Tap"/>
+                            <TextBlock Text="{Binding Status}" Tap="TextBlock_Tap"/>
+                            <TextBlock Text="{Binding Details}" Tap="TextBlock_Tap"/>
+                            <TextBlock Text="{Binding Date}" Tap="TextBlock_Tap"/>
+                            <TextBlock Text="{Binding Severity}" Tap="TextBlock_Tap"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
         </StackPanel>
-        <TextBox Grid.Row="1" Height="72" HorizontalAlignment="Center" Margin="10,0,0,0" Name="searchBox" Text="" VerticalAlignment="Top" Width="470"  TextChanged="searchBox_TextChanged" />
     </Grid>
  
     <!--Sample code showing usage of ApplicationBar-->
