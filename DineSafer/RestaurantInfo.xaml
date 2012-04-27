@@ -24,6 +24,7 @@
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="DINESAFER" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock x:Name="PageTitle" Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="RestAddress" Text="" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle2Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
@@ -33,11 +34,11 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="10">
-                            <TextBlock Text="{Binding FoodType}" Tap="TextBlock_Tap"/>
-                            <TextBlock Text="{Binding Status}" Tap="TextBlock_Tap"/>
-                            <TextBlock Text="{Binding Details}" Tap="TextBlock_Tap"/>
-                            <TextBlock Text="{Binding Date}" Tap="TextBlock_Tap"/>
-                            <TextBlock Text="{Binding Severity}" Tap="TextBlock_Tap"/>
+                            <TextBlock Text="{Binding FoodType}" />
+                            <TextBlock Text="{Binding Status}" />
+                            <TextBlock Text="{Binding Details}" />
+                            <TextBlock Text="{Binding Date}" />
+                            <TextBlock Text="{Binding Severity}" />
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

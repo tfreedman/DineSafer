@@ -20,8 +20,11 @@ namespace DineSafer {
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e) {
             base.OnNavigatedTo(e);
             string name = "";
-            if (NavigationContext.QueryString.TryGetValue("name", out name))
+            string address = "";
+            if (NavigationContext.QueryString.TryGetValue("name", out name) && NavigationContext.QueryString.TryGetValue("address", out address)) {
+                RestAddress.Text = address;
                 PageTitle.Text = name;
+            }
         }
     }
 }

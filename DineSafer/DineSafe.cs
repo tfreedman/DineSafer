@@ -12,20 +12,6 @@ using System.Collections.Generic;
 
 namespace DineSafer
 {
-    class DineSafeComparer : IEqualityComparer<DineSafe>
-    {
-        public bool Equals(DineSafe x, DineSafe y)
-        {
-            if (x.Name.Equals(y.Name) && x.Address.Equals(y.Address))
-                return true;
-            return false;
-        }
-
-        public int GetHashCode(DineSafe dineSafe)
-        {
-            return 10;
-        }
-    }
     public class DineSafe
     {
         string ESTABLISHMENT_NAME;
@@ -70,6 +56,11 @@ namespace DineSafer
         {
             get { return SEVERITY; }
             set { SEVERITY = value; }
+        }
+
+        public string GetKey()
+        {
+            return string.Format("Name={0},Address={1}", Name, Address);
         }
     }
 }

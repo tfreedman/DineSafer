@@ -32,9 +32,9 @@
             <ListBox x:Name="listBox">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Margin="10">
-                            <TextBlock Text="{Binding Name}" Tag="{Binding Name}" Tap="TextBlock_Tap"/>
-                            <TextBlock Text="{Binding Address}" Tag="{Binding Address}" Tap="TextBlock_Tap"/>
+                        <StackPanel Margin="10" Tap="StackPanel_Tap">
+                            <TextBlock Text="{Binding Name}"/>
+                            <TextBlock Text="{Binding Address}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

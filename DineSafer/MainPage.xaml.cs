@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Windows.Input;
 using System.Windows.Controls;
 
+
 namespace DineSafer {
     public partial class MainPage : PhoneApplicationPage {
         XDocument loadedData;
@@ -16,7 +17,7 @@ namespace DineSafer {
 
         public MainPage() {
             InitializeComponent();
-            Debug.WriteLine(DateTime.Now);
+            Debug.WriteLine("(1)" + DateTime.Now);
             xml = Application.GetResourceStream(new Uri("dinesafe.xml", UriKind.Relative));
             loadedData = XDocument.Load(xml.Stream);
 
@@ -30,15 +31,25 @@ namespace DineSafer {
                            Date = (string)query.Attribute("INFRACTION_DATE"),
                            Severity = (string)query.Attribute("SEVERITY")
                        };
-            uniques = data.Distinct(new DineSafeComparer());
-            original = data.ToArray<DineSafe>();
-            array = uniques.ToArray<DineSafe>();
-            Debug.WriteLine(DateTime.Now);
 
+            original = data.ToArray<DineSafe>();
+            Dictionary<string, short> seenEntries = new Dictionary<string, short>(); // the short value is a dummy value
+            foreach (DineSafe dineSafe in data) {
+                string key = dineSafe.GetKey();
+                if (!seenEntries.ContainsKey(key)) {
+                    uniques.Add(dineSafe);
+                    seenEntries.Add(key, 0);
+                }
+            }
+            seenEntries.Clear();
+            array = uniques.ToArray();
+            Debug.WriteLine("[DONE!]" + DateTime.Now);
         }
-        public DineSafe[] original;
-        DineSafe[] array;
-        IEnumerable<DineSafe> uniques;
+
+        static DineSafe[] original;
+        static DineSafe[] array;
+
+        private List<DineSafe> uniques = new List<DineSafe>();
         List<DineSafe> filteredData;
         private void performSearch(object sender, EventArgs e) {
             filteredData = new List<DineSafe> { };
@@ -47,8 +58,7 @@ namespace DineSafer {
                     filteredData.Add(array[i]);
             }
             listBox.ItemsSource = filteredData;
-
-         }
+        }
 
         private void search() {
             object sender = null;
@@ -61,9 +71,11 @@ namespace DineSafer {
             search();
         }
 
-        private void TextBlock_Tap(object sender, GestureEventArgs e) {
-            TextBlock se = (TextBlock)sender;
-            NavigationService.Navigate(new Uri("/RestaurantInfo.xaml?name=" + se.Text, UriKind.Relative));
+        private void StackPanel_Tap(object sender, GestureEventArgs e) {
+            StackPanel se = (StackPanel)sender;
+            TextBlock name = (TextBlock)se.Children.ElementAt(0);
+            TextBlock address = (TextBlock)se.Children.ElementAt(1);
+            NavigationService.Navigate(new Uri("/RestaurantInfo.xaml?name=" + name.Text + "&address=" + address.Text, UriKind.Relative));
         }
     }
 }
