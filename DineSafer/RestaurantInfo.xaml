@@ -30,19 +30,7 @@
         <!--ContentPanel - place additional content here-->
         <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,0,0,0" Orientation="Horizontal">
             <TextBlock Text="Events:" Height="532" Width="133" />
-            <ListBox x:Name="listBox">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Margin="10">
-                            <TextBlock Text="{Binding FoodType}" />
-                            <TextBlock Text="{Binding Status}" />
-                            <TextBlock Text="{Binding Details}" />
-                            <TextBlock Text="{Binding Date}" />
-                            <TextBlock Text="{Binding Severity}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <ListBox x:Name="listBox"></ListBox>
         </StackPanel>
     </Grid>
  

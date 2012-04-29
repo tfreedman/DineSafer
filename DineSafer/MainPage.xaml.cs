@@ -23,13 +23,13 @@ namespace DineSafer {
 
             var data = from query in loadedData.Descendants("ROW")
                        select new DineSafe {
-                           Name = (string)query.Attribute("ESTABLISHMENT_NAME"),
-                           FoodType = (string)query.Attribute("ESTABLISHMENTTYPE"),
-                           Address = (string)query.Attribute("ESTABLISHMENT_ADDRESS"),
-                           Status = (string)query.Attribute("ESTABLISHMENT_STATUS"),
-                           Details = (string)query.Attribute("INFRACTION_DETAILS"),
-                           Date = (string)query.Attribute("INFRACTION_DATE"),
-                           Severity = (string)query.Attribute("SEVERITY")
+                           Name = (string)query.Attribute("N"),
+                           FoodType = (string)query.Attribute("T"),
+                           Address = (string)query.Attribute("A"),
+                           Status = (string)query.Attribute("S"),
+                           Details = (string)query.Attribute("D"),
+                           Date = (string)query.Attribute("I"),
+                           Severity = (string)query.Attribute("X")
                        };
 
             original = data.ToArray<DineSafe>();
@@ -46,8 +46,8 @@ namespace DineSafer {
             Debug.WriteLine("[DONE!]" + DateTime.Now);
         }
 
-        static DineSafe[] original;
-        static DineSafe[] array;
+        public static DineSafe[] original;
+        public static DineSafe[] array;
 
         private List<DineSafe> uniques = new List<DineSafe>();
         List<DineSafe> filteredData;
