@@ -32,8 +32,6 @@ namespace DineSafer {
                     filteredData.Add(MainPage.original[i]);
             }
 
-
-
             List<StackPanel> events = new List<StackPanel> { };
             Dictionary<string, short> seenDates = new Dictionary<string, short>(); // the short value is a dummy value
             foreach (DineSafe dineSafe in filteredData) {
@@ -42,10 +40,12 @@ namespace DineSafer {
                     seenDates.Add(key, 0);
                 }
             }
+            
             var sortedSeenDates = seenDates.Keys.ToList();
             sortedSeenDates.Sort();
             sortedSeenDates.Reverse();
 
+            seenDates.Clear();
 
             foreach (string pair in sortedSeenDates) {
                 events.Add(new StackPanel());
@@ -57,8 +57,8 @@ namespace DineSafer {
                         ((TextBlock)events.ElementAt(events.Count - 1).Children.ElementAt(eventAt - 1)).Text = filteredData[i].Severity[0] + " - " + ((TextBlock)events.ElementAt(events.Count - 1).Children.ElementAt(eventAt - 1)).Text;
                     }
                 }
+                ((TextBlock)(events.ElementAt(events.Count - 1).Children.ElementAt(0))).Text = "\u2022" + ((TextBlock)(events.ElementAt(events.Count - 1).Children.ElementAt(0))).Text;
                 if (events.ElementAt(events.Count - 1).Children.Count == 1) {
-                    ((TextBlock)(events.ElementAt(events.Count - 1).Children.ElementAt(0))).Text = "\u2022" + ((TextBlock)(events.ElementAt(events.Count - 1).Children.ElementAt(0))).Text;
                     ((TextBlock)(events.ElementAt(events.Count - 1).Children.ElementAt(0))).Foreground = new SolidColorBrush(Colors.Green);
                 }
             }

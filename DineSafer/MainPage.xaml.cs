@@ -75,7 +75,10 @@ namespace DineSafer {
             StackPanel se = (StackPanel)sender;
             TextBlock name = (TextBlock)se.Children.ElementAt(0);
             TextBlock address = (TextBlock)se.Children.ElementAt(1);
-            NavigationService.Navigate(new Uri("/RestaurantInfo.xaml?name=" + name.Text + "&address=" + address.Text, UriKind.Relative));
+            string escapedName = Uri.EscapeDataString(name.Text);
+            string escapedAddress = Uri.EscapeDataString(address.Text);
+
+            NavigationService.Navigate(new Uri("/RestaurantInfo.xaml?name=" + escapedName + "&address=" + escapedAddress, UriKind.Relative));
         }
     }
 }
