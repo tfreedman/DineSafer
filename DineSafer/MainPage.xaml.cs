@@ -77,7 +77,6 @@ namespace DineSafer {
             TextBlock address = (TextBlock)se.Children.ElementAt(1);
             string escapedName = Uri.EscapeDataString(name.Text);
             string escapedAddress = Uri.EscapeDataString(address.Text);
-
             NavigationService.Navigate(new Uri("/RestaurantInfo.xaml?name=" + escapedName + "&address=" + escapedAddress, UriKind.Relative));
         }
     }

@@ -23,24 +23,24 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="DINESAFER" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="home" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="PageTitle" Text="HOME" Margin="9,-7,0,0"  Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,119,0,0" Orientation="Horizontal">
-            <TextBlock Text="Restaurants:" Height="532" Width="133" />
+        <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,120,0,0" Orientation="Horizontal">
+            <TextBlock Text="RESTAURANTS:" Margin="12,10,0,0"/>
             <ListBox x:Name="listBox">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="10" Tap="StackPanel_Tap">
-                            <TextBlock Text="{Binding Name}"/>
-                            <TextBlock Text="{Binding Address}"/>
+                            <TextBlock Text="{Binding Name}" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding Address}" TextWrapping="Wrap"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
         </StackPanel>
-        <TextBox Grid.Row="1" Height="72" HorizontalAlignment="Center" Margin="10,0,0,0" Name="searchBox" Text="" VerticalAlignment="Top" Width="470"  TextChanged="searchBox_TextChanged" />
+        <TextBox Grid.Row="1" Margin="24, 0, 24, 0" Height="72" HorizontalAlignment="Center" Name="searchBox" Text="" VerticalAlignment="Top" Width="456" TextChanged="searchBox_TextChanged" />
     </Grid>
  
     <!--Sample code showing usage of ApplicationBar-->

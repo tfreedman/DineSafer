@@ -23,7 +23,7 @@ namespace DineSafer {
             string address = "";
             if (NavigationContext.QueryString.TryGetValue("name", out name) && NavigationContext.QueryString.TryGetValue("address", out address)) {
                 RestAddress.Text = address;
-                PageTitle.Text = name;
+                PageTitle.Text = name.ToUpper();
             }
 
             List<DineSafe> filteredData = new List<DineSafe> { };
@@ -46,21 +46,41 @@ namespace DineSafer {
             sortedSeenDates.Reverse();
 
             seenDates.Clear();
-
+            bool closedFlag = false;
+            bool conditionalFlag = false;
             foreach (string pair in sortedSeenDates) {
                 events.Add(new StackPanel());
                 events.ElementAt(events.Count - 1).Children.Add(new TextBlock { Text = pair });
                 for (int i = 0; i < filteredData.Count; i++) {
                     if (filteredData[i].Date.Equals(pair) && !filteredData[i].Details.Equals("")) {
-                        events.ElementAt(events.Count - 1).Children.Add(new TextBlock { Text = filteredData[i].Details });
+                        if (filteredData[i].Status.Equals("Closed")) {
+                            closedFlag = true;
+                        }
+                        else if (filteredData[i].Status.Equals("Conditional Pass")) {
+                            conditionalFlag = true;
+                        }
+                        events.ElementAt(events.Count - 1).Children.Add(new TextBlock { Text = filteredData[i].Details});
                         int eventAt = events.ElementAt(events.Count - 1).Children.Count;
+                        ((TextBlock)events.ElementAt(events.Count - 1).Children.ElementAt(eventAt - 1)).TextWrapping = TextWrapping.Wrap;
+                        ((TextBlock)events.ElementAt(events.Count - 1).Children.ElementAt(eventAt - 1)).Margin = new Thickness(12,0,0,0);
                         ((TextBlock)events.ElementAt(events.Count - 1).Children.ElementAt(eventAt - 1)).Text = filteredData[i].Severity[0] + " - " + ((TextBlock)events.ElementAt(events.Count - 1).Children.ElementAt(eventAt - 1)).Text;
+                        events.ElementAt(events.Count - 1).Children.Add(new TextBlock { Margin = new Thickness(0,5,0,0) });
                     }
                 }
                 ((TextBlock)(events.ElementAt(events.Count - 1).Children.ElementAt(0))).Text = "\u2022" + ((TextBlock)(events.ElementAt(events.Count - 1).Children.ElementAt(0))).Text;
                 if (events.ElementAt(events.Count - 1).Children.Count == 1) {
                     ((TextBlock)(events.ElementAt(events.Count - 1).Children.ElementAt(0))).Foreground = new SolidColorBrush(Colors.Green);
-                }
+                } else if (conditionalFlag) {
+                    for (int i = 0; i < events.ElementAt(events.Count - 1).Children.Count; i++) {
+                        ((TextBlock)(events.ElementAt(events.Count - 1).Children.ElementAt(i))).Foreground = new SolidColorBrush(Colors.Yellow);
+                    }
+                } else if (closedFlag) {
+                    for (int i = 0; i < events.ElementAt(events.Count - 1).Children.Count; i++) {
+                        ((TextBlock)(events.ElementAt(events.Count - 1).Children.ElementAt(i))).Foreground = new SolidColorBrush(Colors.Red);
+                    }
+                } 
+                conditionalFlag = false;
+                closedFlag = false;
             }
 
             foreach (StackPanel detail in events) {
