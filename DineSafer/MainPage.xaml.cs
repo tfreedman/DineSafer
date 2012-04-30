@@ -5,10 +5,8 @@ using System.Windows;
 using Microsoft.Phone.Controls;
 using System.Xml.Linq;
 using System.Windows.Resources;
-using System.Diagnostics;
-using System.Windows.Input;
 using System.Windows.Controls;
-
+using System.IO;
 
 namespace DineSafer {
     public partial class MainPage : PhoneApplicationPage {
@@ -17,8 +15,7 @@ namespace DineSafer {
 
         public MainPage() {
             InitializeComponent();
-            Debug.WriteLine("(1)" + DateTime.Now);
-            xml = Application.GetResourceStream(new Uri("dinesafe.xml", UriKind.Relative));
+            xml = App.GetResourceStream(new Uri("dinesafe.xml", UriKind.Relative));
             loadedData = XDocument.Load(xml.Stream);
 
             var data = from query in loadedData.Descendants("ROW")
@@ -33,7 +30,7 @@ namespace DineSafer {
                        };
 
             original = data.ToArray<DineSafe>();
-            Dictionary<string, short> seenEntries = new Dictionary<string, short>(); // the short value is a dummy value
+            Dictionary<string, short> seenEntries = new Dictionary<string, short>();
             foreach (DineSafe dineSafe in data) {
                 string key = dineSafe.GetKey();
                 if (!seenEntries.ContainsKey(key)) {
@@ -43,7 +40,6 @@ namespace DineSafer {
             }
             seenEntries.Clear();
             array = uniques.ToArray();
-            Debug.WriteLine("[DONE!]" + DateTime.Now);
         }
 
         public static DineSafe[] original;
@@ -51,27 +47,19 @@ namespace DineSafer {
 
         private List<DineSafe> uniques = new List<DineSafe>();
         List<DineSafe> filteredData;
-        private void performSearch(object sender, EventArgs e) {
+
+        string toSearch = "";
+        private void searchBox_TextChanged(object sender, RoutedEventArgs e) {
+            toSearch = searchBox.Text;
             filteredData = new List<DineSafe> { };
             for (int i = 0; i < array.GetLength(0); i++) {
-                if (Convert.ToString(array[i].Name).ToLower().Contains(Convert.ToString(toSearch).ToLower()))
+                if (Convert.ToString(array[i].Name).ToLower().Contains(Convert.ToString(toSearch).ToLower()) || Convert.ToString(array[i].Address).ToLower().Contains(Convert.ToString(toSearch).ToLower()))
                     filteredData.Add(array[i]);
             }
             listBox.ItemsSource = filteredData;
         }
 
-        private void search() {
-            object sender = null;
-            EventArgs e = new EventArgs();
-            performSearch(sender, e);
-        }
-        string toSearch = "";
-        private void searchBox_TextChanged(object sender, RoutedEventArgs e) {
-            toSearch = searchBox.Text;
-            search();
-        }
-
-        private void StackPanel_Tap(object sender, GestureEventArgs e) {
+        private void StackPanel_Tap(object sender, System.Windows.Input.GestureEventArgs e) {
             StackPanel se = (StackPanel)sender;
             TextBlock name = (TextBlock)se.Children.ElementAt(0);
             TextBlock address = (TextBlock)se.Children.ElementAt(1);

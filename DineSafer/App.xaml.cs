@@ -36,6 +36,14 @@ namespace DineSafer
 
             // Phone-specific initialization
             InitializePhoneApplication();
+            RootFrame = new TransitionFrame(); 
+            RootFrame.Navigated += CompleteInitializePhoneApplication;
+
+            // Handle navigation failures
+            RootFrame.NavigationFailed += RootFrame_NavigationFailed;
+
+            // Ensure we don't initialize again
+            phoneApplicationInitialized = true;
 
             // Show graphics profiling information while debugging.
             if (System.Diagnostics.Debugger.IsAttached)

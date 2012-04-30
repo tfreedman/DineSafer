@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 
 namespace DineSafer {
@@ -33,7 +28,7 @@ namespace DineSafer {
             }
 
             List<StackPanel> events = new List<StackPanel> { };
-            Dictionary<string, short> seenDates = new Dictionary<string, short>(); // the short value is a dummy value
+            Dictionary<string, short> seenDates = new Dictionary<string, short>();
             foreach (DineSafe dineSafe in filteredData) {
                 string key = dineSafe.Date;
                 if (!seenDates.ContainsKey(key)) {

@@ -9,9 +9,9 @@ using System.Resources;
 [assembly: AssemblyTitle("DineSafer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Tyler Freedman")]
 [assembly: AssemblyProduct("DineSafer")]
-[assembly: AssemblyCopyright("Copyright ©  2012")]
+[assembly: AssemblyCopyright("Copyright © Tyler Freedman 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
