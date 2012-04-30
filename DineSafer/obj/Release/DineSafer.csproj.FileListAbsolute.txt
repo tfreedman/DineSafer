@@ -1,0 +1,15 @@
+C:\Users\Tyler\Documents\Visual Studio 2010\Projects\DineSafer\DineSafer\Bin\Release\DineSafer.dll
+C:\Users\Tyler\Documents\Visual Studio 2010\Projects\DineSafer\DineSafer\Bin\Release\DineSafer.pdb
+C:\Users\Tyler\Documents\Visual Studio 2010\Projects\DineSafer\DineSafer\Bin\Release\AppManifest.xaml
+C:\Users\Tyler\Documents\Visual Studio 2010\Projects\DineSafer\DineSafer\Bin\Release\DineSafer.xap
+C:\Users\Tyler\Documents\Visual Studio 2010\Projects\DineSafer\DineSafer\Bin\Release\Microsoft.Phone.Controls.Toolkit.dll
+C:\Users\Tyler\Documents\Visual Studio 2010\Projects\DineSafer\DineSafer\Bin\Release\Microsoft.Phone.Controls.Toolkit.pdb
+C:\Users\Tyler\Documents\Visual Studio 2010\Projects\DineSafer\DineSafer\Bin\Release\Microsoft.Phone.Controls.Toolkit.xml
+C:\Users\Tyler\Documents\Visual Studio 2010\Projects\DineSafer\DineSafer\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Tyler\Documents\Visual Studio 2010\Projects\DineSafer\DineSafer\obj\Release\App.g.i.cs
+C:\Users\Tyler\Documents\Visual Studio 2010\Projects\DineSafer\DineSafer\obj\Release\MainPage.g.i.cs
+C:\Users\Tyler\Documents\Visual Studio 2010\Projects\DineSafer\DineSafer\obj\Release\RestaurantInfo.g.i.cs
+C:\Users\Tyler\Documents\Visual Studio 2010\Projects\DineSafer\DineSafer\obj\Release\DineSafer.g.resources
+C:\Users\Tyler\Documents\Visual Studio 2010\Projects\DineSafer\DineSafer\obj\Release\DineSafer.dll
+C:\Users\Tyler\Documents\Visual Studio 2010\Projects\DineSafer\DineSafer\obj\Release\DineSafer.pdb
+C:\Users\Tyler\Documents\Visual Studio 2010\Projects\DineSafer\DineSafer\obj\Release\XapCacheFile.xml

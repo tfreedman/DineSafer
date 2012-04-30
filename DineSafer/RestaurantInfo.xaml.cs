@@ -17,8 +17,8 @@ namespace DineSafer {
             string name = "";
             string address = "";
             if (NavigationContext.QueryString.TryGetValue("name", out name) && NavigationContext.QueryString.TryGetValue("address", out address)) {
-                RestAddress.Text = address;
-                PageTitle.Text = name.ToUpper();
+                RestAddress.Text = address.ToLower();
+                PageTitle.Text = name.ToLower();
             }
 
             List<DineSafe> filteredData = new List<DineSafe> { };
@@ -64,14 +64,14 @@ namespace DineSafer {
                 }
                 ((TextBlock)(events.ElementAt(events.Count - 1).Children.ElementAt(0))).Text = "\u2022" + ((TextBlock)(events.ElementAt(events.Count - 1).Children.ElementAt(0))).Text;
                 if (events.ElementAt(events.Count - 1).Children.Count == 1) {
-                    ((TextBlock)(events.ElementAt(events.Count - 1).Children.ElementAt(0))).Foreground = new SolidColorBrush(Colors.Green);
+                    ((TextBlock)(events.ElementAt(events.Count - 1).Children.ElementAt(0))).Foreground = new SolidColorBrush(Color.FromArgb(255, 58, 158, 38));
                 } else if (conditionalFlag) {
                     for (int i = 0; i < events.ElementAt(events.Count - 1).Children.Count; i++) {
-                        ((TextBlock)(events.ElementAt(events.Count - 1).Children.ElementAt(i))).Foreground = new SolidColorBrush(Colors.Yellow);
+                        ((TextBlock)(events.ElementAt(events.Count - 1).Children.ElementAt(i))).Foreground = new SolidColorBrush(Color.FromArgb(255, 252, 181, 60));
                     }
                 } else if (closedFlag) {
                     for (int i = 0; i < events.ElementAt(events.Count - 1).Children.Count; i++) {
-                        ((TextBlock)(events.ElementAt(events.Count - 1).Children.ElementAt(i))).Foreground = new SolidColorBrush(Colors.Red);
+                        ((TextBlock)(events.ElementAt(events.Count - 1).Children.ElementAt(i))).Foreground = new SolidColorBrush(Color.FromArgb(255, 252, 60, 60));
                     }
                 } 
                 conditionalFlag = false;

@@ -6,7 +6,6 @@ using Microsoft.Phone.Controls;
 using System.Xml.Linq;
 using System.Windows.Resources;
 using System.Windows.Controls;
-using System.IO;
 
 namespace DineSafer {
     public partial class MainPage : PhoneApplicationPage {
@@ -44,16 +43,13 @@ namespace DineSafer {
 
         public static DineSafe[] original;
         public static DineSafe[] array;
-
         private List<DineSafe> uniques = new List<DineSafe>();
         List<DineSafe> filteredData;
 
-        string toSearch = "";
         private void searchBox_TextChanged(object sender, RoutedEventArgs e) {
-            toSearch = searchBox.Text;
             filteredData = new List<DineSafe> { };
             for (int i = 0; i < array.GetLength(0); i++) {
-                if (Convert.ToString(array[i].Name).ToLower().Contains(Convert.ToString(toSearch).ToLower()) || Convert.ToString(array[i].Address).ToLower().Contains(Convert.ToString(toSearch).ToLower()))
+                if (Convert.ToString(array[i].Name).ToLower().Contains(Convert.ToString(searchBox.Text).ToLower()) || Convert.ToString(array[i].Address).ToLower().Contains(Convert.ToString(searchBox.Text).ToLower()))
                     filteredData.Add(array[i]);
             }
             listBox.ItemsSource = filteredData;
